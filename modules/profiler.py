@@ -27,10 +27,10 @@ def profiler_install(branch) :
 
     # check we have pre-requisite python modules
     # fakeAP, manuf
-    if check_module_installed('manuf'):
-        print("Yes...")
+    #if check_module_installed('manuf'):
+    #    print("Yes...")
     
-    exit()
+    #exit()
 
         # remove old backup file if exists
     print("Checking if old backup exists.")
