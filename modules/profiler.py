@@ -53,7 +53,7 @@ def profiler_install(branch) :
             return False
 
     # clone files from GitHub
-    if not pull_github_files("github.com/WLAN-Pi/wlanpihotspot.git", branch):
+    if not pull_github_files(github_repo, branch):
         return False
 
     # Set file permissions
