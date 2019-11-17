@@ -13,6 +13,7 @@ install_dir = "{}/{}".format(base_dir, module_dir)
 tmp_dir = '/tmp'
 backup_dir = "{}/wlanpihotspot".format(tmp_dir)
 github_repo = "github.com/WLAN-Pi/wlanpihotspot.git"
+pkg_list = ['hostapd', 'ufw', 'isc-dhcp-server']
 
 def hotspot_install(branch) :
 
@@ -23,6 +24,10 @@ def hotspot_install(branch) :
     print("Installing hotspot...")
 
     # check we have pre-requisite Linux modules (apt-get etc.)
+    if not check_pkgs_installed(pkg_list):
+        return False
+    
+    '''
     if not check_pkg_installed('hostapd'):
         return False
     
@@ -31,7 +36,8 @@ def hotspot_install(branch) :
     
     if not check_pkg_installed('isc-dhcp-server'):
         return False
-
+    '''
+    
     # check we have pre-requisite python modules
     # *** N/A as this is all shell scripts ***
 

@@ -91,6 +91,13 @@ def check_pkg_installed(pkg_name):
         print("Error: Package {} not installed, please install".format(pkg_name))
         return False
 
+def check_pkgs_installed(pkg_list):
+    for pkg in pkg_list:
+        if not check_pkg_installed(pkg):
+            return False
+    # all pkgs must be installed OK
+    return True
+
 def check_module_installed(mod_name):
     if mod_name in sys.modules:
         return True
