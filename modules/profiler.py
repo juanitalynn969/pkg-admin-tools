@@ -59,7 +59,7 @@ def profiler_install(branch) :
     # Set file permissions
     print("Setting permissions on new files")
     try:
-        script_output = subprocess.check_output("sh {}}/set_file_permissions.sh".format(install_dir), shell=True)
+        script_output = subprocess.check_output("sh {}/set_file_permissions.sh".format(install_dir), shell=True)
         print("File permissions set.")
     except:
         print("Unable to set file permissions.")
