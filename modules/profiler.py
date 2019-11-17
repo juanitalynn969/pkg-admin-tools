@@ -12,7 +12,7 @@ module_dir = 'profiler'
 install_dir = "{}/{}".format(base_dir, module_dir)
 tmp_dir = '/tmp'
 backup_dir = "{}/profiler".format(tmp_dir)
-github_repo = "https://github.com/WLAN-Pi/profiler.git"
+github_repo = "github.com/WLAN-Pi/profiler.git"
 
 def profiler_install(branch) :
 
