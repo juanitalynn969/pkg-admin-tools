@@ -47,7 +47,7 @@ def pull_github_files(url, branch):
     print("Pulling files from GitHub...")
     try:
         pull_output = subprocess.check_output(
-            "git clone --single-branch --branch {} https://{}".format(branch, url), shell=True)
+            "git clone --single-branch --branch {} {}".format(branch, url), shell=True)
         print("Files pulled OK.")
         return True
     except Exception as ex:

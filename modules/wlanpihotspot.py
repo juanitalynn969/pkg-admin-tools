@@ -12,7 +12,7 @@ hotspot_params = {
     'install_dir': '/etc/wlanpihotspot',
     'tmp_dir': '/tmp',
     'backup_dir': '/tmp//wlanpihotspot',
-    'github_url': "github.com/WLAN-Pi/wlanpihotspot.git",
+    'github_url': "https://github.com/WLAN-Pi/wlanpihotspot.git",
     'linux_pkg_list': ['hostapd', 'ufw', 'isc-dhcp-server'],
     'pkg_name': 'hotspot'
 }

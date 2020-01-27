@@ -12,7 +12,7 @@ profiler_params = {
     'install_dir': '/home/wlanpi/profiler',
     'tmp_dir': '/tmp',
     'backup_dir': "/tmp/profiler",
-    'github_url': "github.com/WLAN-Pi/profiler.git",
+    'github_url': "https://github.com/WLAN-Pi/profiler.git",
     'pkg_name': 'profiler',
     'linux_pkg_list': []
 }
