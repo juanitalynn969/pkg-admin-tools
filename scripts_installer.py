@@ -5,6 +5,7 @@ from modules.profiler import *
 from modules.wlanpihotspot import *
 from modules.installer_utils import *
 from modules.wiperf import *
+from modules.updater import *
 
 import argparse
 import requests
@@ -19,10 +20,6 @@ if not os.geteuid() == 0:
     exit()
 
 
-print()
-print("-" * 50)
-print("Installer script started...")
-
 # create parser args
 parser = argparse.ArgumentParser()
 
@@ -32,19 +29,35 @@ if len(sys.argv) < 2:
     sys.exit(1)
 
 # setup parse args
-parser.add_argument("-i", "--install", type=str, help="install module")
-parser.add_argument("-r", "--roll_back", type=str, help="rollback module")
+parser.add_argument("-i", "--install", type=str, nargs=1,
+                    metavar=('module'),  help="install module")
+parser.add_argument("-r", "--roll_back", type=str, nargs=1,
+                    metavar=('module'), help="rollback module")
 parser.add_argument("-d", "--dev", action='store_true', help="pull dev branch")
-parser.add_argument("-b", "--branch", type=str,
-                    help="pull branch specific branch/release")
+parser.add_argument("-b", "--branch", type=str,  nargs=1,
+                    metavar=('branch_name'), help="pull branch specific branch/release")
+parser.add_argument("-u", "--update", action='store_true',
+                    help="update this utility with latest version")
 
 args = parser.parse_args()
+
+print()
+print("-" * 50)
+print("Installer script started...")
 
 branch = "master"
 if args.dev:
     branch = "dev"
 if args.branch:
     branch = args.branch
+
+# update util
+if (args.update):
+
+    if updater_install(branch, updater_params):
+        print("pkg-admin installed.")
+    else:
+        print("pkg-admin install failed.")
 
 # hotspot
 if (args.install == "hotspot"):
