@@ -73,7 +73,7 @@ if (args.install == "profiler"):
 
 if (args.roll_back == "profiler"):
 
-    if hotspot_rollback():
+    if profiler_rollback():
         print("Profiler rolled back.")
     else:
         print("Profiler rollback failed.")
