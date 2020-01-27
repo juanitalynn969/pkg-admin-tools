@@ -8,6 +8,7 @@ from modules.wiperf import *
 
 import argparse
 import requests
+import sys
 
 
 if not os.geteuid() == 0:
@@ -17,12 +18,20 @@ if not os.geteuid() == 0:
     print("---------------------------------------------\n")
     exit()
 
+
 print()
 print("-" * 50)
 print("Installer script started...")
 
-# setup CLI parser
+# create parser args
 parser = argparse.ArgumentParser()
+
+# check we have passed args of some type
+if len(sys.argv) < 2:
+    parser.print_usage()
+    sys.exit(1)
+
+# setup parse args
 parser.add_argument("-i", "--install", type=str, help="install module")
 parser.add_argument("-r", "--roll_back", type=str, help="rollback module")
 parser.add_argument("-d", "--dev", action='store_true', help="pull dev branch")
