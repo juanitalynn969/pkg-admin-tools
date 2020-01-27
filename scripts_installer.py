@@ -1,32 +1,20 @@
 #!/usr/bin/python3
 
-import argparse
-import logging
-import logging.handlers as handlers
-import requests
-
+from modules.wconsole import *
+from modules.profiler import *
+from modules.wlanpihotspot import *
 from modules.installer_utils import *
 
-if not os.geteuid()==0:
+import argparse
+import requests
+
+
+if not os.geteuid() == 0:
     print("\n---------------------------------------------")
     print(" You must be root to run this script")
     print(" (use 'sudo script_installer.py') - exiting")
-    print(  "---------------------------------------------\n")
+    print("---------------------------------------------\n")
     exit()
-
-'''
-# set up logging
-log_file = '/tmp/scripts_installer.log'
-logger = logging.getLogger('Pkg-Admin')
-logger.setLevel(logging.INFO)
-logging.basicConfig(format='%(asctime)s %(levelname)-8s %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
-
-logHandler = handlers.RotatingFileHandler(log_file, maxBytes=500000, backupCount=2)
-logHandler.setLevel(logging.INFO)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-logHandler.setFormatter(formatter)
-logger.addHandler(logHandler)
-'''
 
 print()
 print("-" * 50)
@@ -44,39 +32,52 @@ branch = "master"
 if args.dev:
     branch = "dev"
 
-# import hotpot module 
-from modules.wlanpihotspot import *
+# hotspot
 
 if (args.install == "hotspot"):
 
-    if hotspot_install(branch):
+    if hotspot_install(branch, hotspot_params):
         print("Hotspot installed.")
     else:
         print("Hotspot install failed.")
 
 if (args.roll_back == "hotspot"):
 
-    if hotspot_rollback():
+    if hotspot_rollback(hotspot_params):
         print("Hotspot rolled back.")
     else:
         print("Hotspot rollback failed.")
 
-# import profiler module
-from modules.profiler import *
-
+# profiler
 if (args.install == "profiler"):
 
-    if profiler_install(branch):
+    if profiler_install(branch, profiler_params):
         print("Profiler installed.")
     else:
         print("Profiler install failed.")
 
 if (args.roll_back == "profiler"):
 
-    if profiler_rollback():
+    if profiler_rollback(profiler_params):
         print("Profiler rolled back.")
     else:
         print("Profiler rollback failed.")
 
-print("-" * 50)
+# import wconsole module
 
+if (args.install == "wconsole"):
+
+    if wconsole_install(branch, wconsole_params):
+        print("wconsole installed.")
+    else:
+        print("wconsole install failed.")
+
+if (args.roll_back == "wconsole"):
+
+    if wconsole_rollback(wconsole_params):
+        print("wconsole rolled back.")
+    else:
+        print("wconsole rollback failed.")
+
+# end
+print("-" * 50)

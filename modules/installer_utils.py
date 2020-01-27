@@ -5,6 +5,7 @@ import shutil
 import requests
 import sys
 
+
 def dialog(msg):
     print("-" + msg)
 
@@ -12,7 +13,7 @@ def dialog(msg):
 def check_internet(url="https://github.com"):
 
     print("Checking Internet connection...")
-     
+
     try:
         request = requests.get(url)
         if request.status_code == 200:
@@ -22,6 +23,7 @@ def check_internet(url="https://github.com"):
         print("Unable to access GitHub: {}".format(ex))
         return False
 
+
 def file_exists(filename):
     try:
         if os.path.exists(filename):
@@ -29,6 +31,7 @@ def file_exists(filename):
     except Exception as ex:
         print("Error: {}".format(ex))
         return False
+
 
 def delete_file(filename):
 
@@ -39,10 +42,12 @@ def delete_file(filename):
         print("Error: {}".format(ex))
         return False
 
+
 def pull_github_files(url, branch):
     print("Pulling files from GitHub...")
     try:
-        pull_output = subprocess.check_output("git clone --single-branch --branch {} https://{}".format(branch, url), shell=True)
+        pull_output = subprocess.check_output(
+            "git clone --single-branch --branch {} https://{}".format(branch, url), shell=True)
         print("Files pulled OK.")
         return True
     except Exception as ex:
@@ -62,25 +67,29 @@ def change_directory(dir):
         print("Error: {}".format(ex))
         return False
 
+
 def move_directory(src, dst):
     try:
-       shutil.move(src, dst)
-       print("Files moved to {} OK.".format(dst))
-       return True
+        shutil.move(src, dst)
+        print("Files moved to {} OK.".format(dst))
+        return True
     except Exception as ex:
         print("Unable to move files to {}".format(dst))
         print("Error: {}".format(ex))
         return False
 
+
 def clear_dir(dir):
     try:
-        pull_output = subprocess.check_output("rm -r {}".format(dir), shell=True) 
+        pull_output = subprocess.check_output(
+            "rm -r {}".format(dir), shell=True)
         print("Directory removed.")
         return True
     except Exception as ex:
         print("Unable to remove directory.")
         print("Error: {}".format(ex))
         return False
+
 
 def check_pkg_installed(pkg_name):
     print("Checking {} package present on system...".format(pkg_name))
@@ -91,6 +100,7 @@ def check_pkg_installed(pkg_name):
         print("Error: Package {} not installed, please install".format(pkg_name))
         return False
 
+
 def check_pkgs_installed(pkg_list):
     for pkg in pkg_list:
         if not check_pkg_installed(pkg):
@@ -98,13 +108,24 @@ def check_pkgs_installed(pkg_list):
     # all pkgs must be installed OK
     return True
 
+
 def check_module_installed(mod_name):
     if mod_name in sys.modules:
         return True
     else:
         return False
 
-def pkg_install(branch, pkg_name, linux_pkg_list, backup_dir, base_dir, module_dir, tmp_dir, github_url, install_dir) :
+
+def pkg_install(branch, params):
+
+    pkg_name = params['pkg_name']
+    linux_pkg_list = params['linux_pkg_list']
+    backup_dir = params['backup_dir']
+    base_dir = params['base_dir']
+    module_dir = params['module_dir']
+    tmp_dir = params['tmp_dir']
+    github_url = params[' github_url']
+    install_dir = params['install_dir']
 
     # check we can get to GitHub
     if not check_internet():
@@ -115,7 +136,7 @@ def pkg_install(branch, pkg_name, linux_pkg_list, backup_dir, base_dir, module_d
     # check we have pre-requisite Linux modules (apt-get etc.)
     if not check_pkgs_installed(linux_pkg_list):
         return False
-    
+
     # check we have pre-requisite python modules
     # TBA
 
@@ -123,10 +144,10 @@ def pkg_install(branch, pkg_name, linux_pkg_list, backup_dir, base_dir, module_d
     print("Checking if old backup exists.")
     if file_exists(backup_dir):
         print("Old backup dir exists.")
-        
+
         if not clear_dir(backup_dir):
             return False
-    
+
     # change in to home dir
     print("Changing directory.")
     if not change_directory(base_dir):
@@ -146,7 +167,8 @@ def pkg_install(branch, pkg_name, linux_pkg_list, backup_dir, base_dir, module_d
     # Set file permissions
     print("Setting permissions on new files")
     try:
-        script_output = subprocess.check_output("sh {}/set_file_permissions.sh".format(install_dir), shell=True)
+        script_output = subprocess.check_output(
+            "sh {}/set_file_permissions.sh".format(install_dir), shell=True)
         print("File permissions set.")
     except:
         print("Unable to set file permissions.")
@@ -155,13 +177,19 @@ def pkg_install(branch, pkg_name, linux_pkg_list, backup_dir, base_dir, module_d
     print("Install complete.")
     return True
 
-def pkg_rollback(pkg_name, backup_dir, install_dir, base_dir):
+
+def pkg_rollback(params):
+
+    backup_dir = params['backup_dir']
+    base_dir = params['base_dir']
+    install_dir = params['install_dir']
+    pkg_name = params['pkg_name']
 
     print("Rolling back {} installation...".format(pkg_name))
     print("Checking if backup exists.")
     if file_exists(backup_dir):
         print("Backup file exists, rolling back.")
-    
+
     print("Clearing install directory: {}".format(install_dir))
 
     if clear_dir(install_dir):
@@ -174,12 +202,7 @@ def pkg_rollback(pkg_name, backup_dir, install_dir, base_dir):
         print("Files restored to {} OK.".format(base_dir))
     else:
         print("Unable to restore files to {}.".format(base_dir))
-        return False 
+        return False
 
     print("Rollback complete.")
     return True
-
-
-
-
-

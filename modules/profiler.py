@@ -1,3 +1,4 @@
+from modules.installer_utils import *
 #############################################
 # Install profiler:
 #
@@ -5,28 +6,31 @@
 # 2. Pull in new files from github
 # 3. Set directory & file permissions
 #############################################
-from modules.installer_utils import *
+profiler_params = {
+    'base_dir': '/home/wlanpi',
+    'module_dir': 'profiler',
+    'install_dir': '/home/wlanpi/profiler',
+    'tmp_dir': '/tmp',
+    'backup_dir': "/tmp/profiler",
+    'github_url': "github.com/WLAN-Pi/profiler.git",
+    'pkg_name': 'profiler',
+    'linux_pkg_list': []
+}
 
-base_dir = '/home/wlanpi'
-module_dir = 'profiler'
-install_dir = "{}/{}".format(base_dir, module_dir)
-tmp_dir = '/tmp'
-backup_dir = "{}/profiler".format(tmp_dir)
-github_url = "github.com/WLAN-Pi/profiler.git"
-pkg_name = 'profiler'
-linux_pkg_list = []
 
-def profiler_install(branch) :
+def profiler_install(branch, profiler_params):
 
-    return pkg_install(branch, pkg_name, linux_pkg_list, backup_dir, base_dir, module_dir, tmp_dir, github_url, install_dir)
+    return pkg_install(branch, profiler_params)
 
 ##################################################################
 # Rollback profiler installation:
 #
 # 1. Check if /tmp/profiler dir exists
 # 2. clear profiler dir (/home/wlanpi/profiler)
-# 3. Copy files in /tmp/profiler back to /home/wlanpi/profiler 
+# 3. Copy files in /tmp/profiler back to /home/wlanpi/profiler
 ##################################################################
-def profiler_rollback():
 
-    return pkg_rollback(pkg_name, backup_dir, install_dir, base_dir)
+
+def profiler_rollback(profiler_params):
+
+    return pkg_rollback(profiler_params)
