@@ -4,6 +4,7 @@ from modules.wconsole import *
 from modules.profiler import *
 from modules.wlanpihotspot import *
 from modules.installer_utils import *
+from modules.wiperf import *
 
 import argparse
 import requests
@@ -37,7 +38,6 @@ if args.branch:
     branch = args.branch
 
 # hotspot
-
 if (args.install == "hotspot"):
 
     if hotspot_install(branch, hotspot_params):
@@ -67,8 +67,7 @@ if (args.roll_back == "profiler"):
     else:
         print("Profiler rollback failed.")
 
-# import wconsole module
-
+# wconsole
 if (args.install == "wconsole"):
 
     if wconsole_install(branch, wconsole_params):
@@ -82,6 +81,21 @@ if (args.roll_back == "wconsole"):
         print("wconsole rolled back.")
     else:
         print("wconsole rollback failed.")
+
+# wiperf
+if (args.install == "wiperf"):
+
+    if wiperf_install(branch, wiperf_params):
+        print("wiperf installed.")
+    else:
+        print("wiperf install failed.")
+
+if (args.roll_back == "wiperf"):
+
+    if wiperf_rollback(wiperf_params):
+        print("wiperf rolled back.")
+    else:
+        print("wiperf rollback failed.")
 
 # end
 print("-" * 50)
