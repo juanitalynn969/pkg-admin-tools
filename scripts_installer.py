@@ -25,12 +25,16 @@ parser = argparse.ArgumentParser()
 parser.add_argument("-i", "--install", type=str, help="install module")
 parser.add_argument("-r", "--roll_back", type=str, help="rollback module")
 parser.add_argument("-d", "--dev", action='store_true', help="pull dev branch")
+parser.add_argument("-b", "--branch", type=str,
+                    help="pull branch specific branch/release")
 
 args = parser.parse_args()
 
 branch = "master"
 if args.dev:
     branch = "dev"
+if args.branch:
+    branch = args.branch
 
 # hotspot
 
