@@ -165,14 +165,16 @@ def pkg_install(branch, params):
         return False
 
     # Set file permissions
-    print("Setting permissions on new files")
-    try:
-        script_output = subprocess.check_output(
-            "sh {}/set_file_permissions.sh".format(install_dir), shell=True)
-        print("File permissions set.")
-    except:
-        print("Unable to set file permissions.")
-        return False
+    permissions_file = '{}/set_file_permissions.sh'.format(install_dir)
+    if file_exists(permissions_file):
+        print("Setting permissions on new files")
+        try:
+            script_output = subprocess.check_output(
+                "sh {}".format(permissions_file), shell=True)
+            print("File permissions set.")
+        except:
+            print("Unable to set file permissions.")
+            return False
 
     print("Install complete.")
     return True
