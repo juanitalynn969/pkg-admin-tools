@@ -124,7 +124,7 @@ def pkg_install(branch, params):
     base_dir = params['base_dir']
     module_dir = params['module_dir']
     tmp_dir = params['tmp_dir']
-    github_url = params[' github_url']
+    github_url = params['github_url']
     install_dir = params['install_dir']
 
     # check we can get to GitHub
