@@ -21,6 +21,11 @@ hotspot_post_install = {
     'cp /etc/wlanpihotspot/conf/hostapd.conf /etc/wlanpihotspot/conf/hostapd.conf.backup',
     'cp /tmp/wlanpihotspot/conf/hostapd.conf /etc/wlanpihotspot/conf/hostapd.conf',
     'chmod a+x /etc/wlanpihotspot/hotspot_switcher',
+    'chown -R root:root /etc/wlanpihotspot',
+    'chmod -R 744 /etc/wlanpihotspot',
+    'chmod 644 /etc/wlanpihotspot/default/ufw',
+    'chmod 644 /etc/wlanpihotspot/sysctl/sysctl.conf',
+    'chmod 640 /etc/wlanpihotspot/ufw/before.rules',
 }
 
 

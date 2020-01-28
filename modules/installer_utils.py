@@ -189,9 +189,9 @@ def pkg_install(branch, params, post_install):
     # Read release notes if vailable and print to screen
     rel_notes_file = '{}/release_notes.txt'.format(install_dir)
     if file_exists(rel_notes_file):
-        print("---------- release notes ----------")
+        print("########## release notes ##########")
         print(read_file(rel_notes_file))
-        print("-----------------------------------")
+        print("###################################")
 
     print("Ver: {}".format(read_file(version_file)))
     print("Install complete.")
