@@ -35,7 +35,7 @@ parser.add_argument("-r", "--roll_back", type=str,
                     metavar=('module'), help="rollback module")
 parser.add_argument("-d", "--dev", action='store_true', help="pull dev branch")
 parser.add_argument("-b", "--branch", type=str,
-                    help="pull branch specific branch/release")
+                    metavar=('branch_name'), help="pull branch specific branch/release")
 parser.add_argument("-u", "--update", action='store_true',
                     help="update this utility with latest version")
 
