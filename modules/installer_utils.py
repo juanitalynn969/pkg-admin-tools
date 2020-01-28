@@ -138,14 +138,14 @@ def pkg_install(branch, params, post_install):
     github_url = params['github_url']
     install_dir = params['install_dir']
 
-    version_file = "{}/version.txt"
+    version_file = "{}/version.txt".format(install_dir)
 
     # check we can get to GitHub
     if not check_internet():
         return False
 
     print("Installing {}...".format(pkg_name))
-    print("Current ver: {}", read_file(version_file))
+    print("Current ver: {}".format(read_file(version_file)))
 
     # check we have pre-requisite Linux modules (apt-get etc.)
     if not check_pkgs_installed(linux_pkg_list):
@@ -191,7 +191,7 @@ def pkg_install(branch, params, post_install):
     if file_exists(rel_notes_file):
         print(read_file(rel_notes_file))
 
-    print("Ver: {}", read_file(version_file))
+    print("Ver: {}".format(read_file(version_file)))
     print("Install complete.")
     return True
 
