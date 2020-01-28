@@ -18,8 +18,13 @@ wconsole_params = {
     'linux_pkg_list': ['hostapd', 'ufw', 'isc-dhcp-server']
 }
 
+# take copies of files that may have been modified & use previous ver
 wconsole_post_install = {
-
+    'cp /etc/wconsole/conf/hostapd.conf /etc/wconsole/conf/hostapd.conf.backup',
+    'cp /tmp/wconsole/conf/hostapd.conf /etc/wconsole/conf/hostapd.conf',
+    'cp /etc/wconsole/conf/ser2net.conf /etc/wconsole/conf/ser2net.conf.backup',
+    'cp /tmp/wconsole/conf/ser2net.conf /etc/wconsole/conf/ser2net.conf',
+    'chmod a+x /etc/wconsole/wconsole_switcher',
 }
 
 

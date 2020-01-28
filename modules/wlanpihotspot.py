@@ -11,14 +11,16 @@ hotspot_params = {
     'module_dir': 'wlanpihotspot',
     'install_dir': '/etc/wlanpihotspot',
     'tmp_dir': '/tmp',
-    'backup_dir': '/tmp//wlanpihotspot',
+    'backup_dir': '/tmp/wlanpihotspot',
     'github_url': "https://github.com/WLAN-Pi/wlanpihotspot.git",
     'linux_pkg_list': ['hostapd', 'ufw', 'isc-dhcp-server'],
     'pkg_name': 'hotspot'
 }
 
 hotspot_post_install = {
-
+    'cp /etc/wlanpihotspot/conf/hostapd.conf /etc/wlanpihotspot/conf/hostapd.conf.backup',
+    'cp /tmp/wlanpihotspot/conf/hostapd.conf /etc/wlanpihotspot/conf/hostapd.conf',
+    'chmod a+x /etc/wlanpihotspot/hotspot_switcher',
 }
 
 
