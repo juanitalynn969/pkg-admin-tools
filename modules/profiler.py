@@ -17,10 +17,14 @@ profiler_params = {
     'linux_pkg_list': []
 }
 
+profiler_post_install = {
 
-def profiler_install(branch, profiler_params):
+}
 
-    return pkg_install(branch, profiler_params)
+
+def profiler_install(branch):
+
+    return pkg_install(branch, profiler_params, profiler_post_install)
 
 ##################################################################
 # Rollback profiler installation:
@@ -31,6 +35,6 @@ def profiler_install(branch, profiler_params):
 ##################################################################
 
 
-def profiler_rollback(profiler_params):
+def profiler_rollback():
 
     return pkg_rollback(profiler_params)

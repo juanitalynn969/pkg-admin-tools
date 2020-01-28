@@ -29,13 +29,11 @@ if len(sys.argv) < 2:
     sys.exit(1)
 
 # setup parse args
-parser.add_argument("-i", "--install", type=str, nargs=1,
-                    metavar=('module'),  help="install module")
-parser.add_argument("-r", "--roll_back", type=str, nargs=1,
-                    metavar=('module'), help="rollback module")
+parser.add_argument("-i", "--install", type=str,  help="install module")
+parser.add_argument("-r", "--roll_back", type=str, help="rollback module")
 parser.add_argument("-d", "--dev", action='store_true', help="pull dev branch")
-parser.add_argument("-b", "--branch", type=str,  nargs=1,
-                    metavar=('branch_name'), help="pull branch specific branch/release")
+parser.add_argument("-b", "--branch", type=str,
+                    help="pull branch specific branch/release")
 parser.add_argument("-u", "--update", action='store_true',
                     help="update this utility with latest version")
 
@@ -54,7 +52,7 @@ if args.branch:
 # update util
 if (args.update):
 
-    if updater_install(branch, updater_params):
+    if updater_install(branch):
         print("pkg-admin installed.")
     else:
         print("pkg-admin install failed.")
@@ -62,14 +60,14 @@ if (args.update):
 # hotspot
 if (args.install == "hotspot"):
 
-    if hotspot_install(branch, hotspot_params):
+    if hotspot_install(branch):
         print("Hotspot installed.")
     else:
         print("Hotspot install failed.")
 
 if (args.roll_back == "hotspot"):
 
-    if hotspot_rollback(hotspot_params):
+    if hotspot_rollback():
         print("Hotspot rolled back.")
     else:
         print("Hotspot rollback failed.")
@@ -77,14 +75,14 @@ if (args.roll_back == "hotspot"):
 # profiler
 if (args.install == "profiler"):
 
-    if profiler_install(branch, profiler_params):
+    if profiler_install(branch):
         print("Profiler installed.")
     else:
         print("Profiler install failed.")
 
 if (args.roll_back == "profiler"):
 
-    if profiler_rollback(profiler_params):
+    if profiler_rollback():
         print("Profiler rolled back.")
     else:
         print("Profiler rollback failed.")
@@ -92,14 +90,14 @@ if (args.roll_back == "profiler"):
 # wconsole
 if (args.install == "wconsole"):
 
-    if wconsole_install(branch, wconsole_params):
+    if wconsole_install(branch):
         print("wconsole installed.")
     else:
         print("wconsole install failed.")
 
 if (args.roll_back == "wconsole"):
 
-    if wconsole_rollback(wconsole_params):
+    if wconsole_rollback():
         print("wconsole rolled back.")
     else:
         print("wconsole rollback failed.")
@@ -107,14 +105,14 @@ if (args.roll_back == "wconsole"):
 # wiperf
 if (args.install == "wiperf"):
 
-    if wiperf_install(branch, wiperf_params):
+    if wiperf_install(branch):
         print("wiperf installed.")
     else:
         print("wiperf install failed.")
 
 if (args.roll_back == "wiperf"):
 
-    if wiperf_rollback(wiperf_params):
+    if wiperf_rollback():
         print("wiperf rolled back.")
     else:
         print("wiperf rollback failed.")

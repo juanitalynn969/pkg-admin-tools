@@ -18,10 +18,14 @@ wconsole_params = {
     'linux_pkg_list': ['hostapd', 'ufw', 'isc-dhcp-server']
 }
 
+wconsole_post_install = {
 
-def wconsole_install(branch, wconsole_params):
+}
 
-    return pkg_install(branch, wconsole_params)
+
+def wconsole_install(branch):
+
+    return pkg_install(branch, wconsole_params, wconsole_post_install)
 
 ##################################################################
 # Rollback wconsole installation:
@@ -32,6 +36,6 @@ def wconsole_install(branch, wconsole_params):
 ##################################################################
 
 
-def wconsole_rollback(wconsole_params):
+def wconsole_rollback():
 
     return pkg_rollback(wconsole_params)

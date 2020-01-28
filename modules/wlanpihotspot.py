@@ -17,10 +17,14 @@ hotspot_params = {
     'pkg_name': 'hotspot'
 }
 
+hotspot_post_install = {
 
-def hotspot_install(branch, hotspot_params):
+}
 
-    return pkg_install(branch, hotspot_params)
+
+def hotspot_install(branch):
+
+    return pkg_install(branch, hotspot_params, hotspot_post_install)
 
 ##################################################################
 # Rollback hotspot installation:
@@ -31,6 +35,6 @@ def hotspot_install(branch, hotspot_params):
 ##################################################################
 
 
-def hotspot_rollback(hotspot_params):
+def hotspot_rollback():
 
     return pkg_rollback(hotspot_params)

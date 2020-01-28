@@ -116,7 +116,7 @@ def check_module_installed(mod_name):
         return False
 
 
-def pkg_install(branch, params):
+def pkg_install(branch, params, post_install):
 
     pkg_name = params['pkg_name']
     linux_pkg_list = params['linux_pkg_list']
@@ -176,18 +176,13 @@ def pkg_install(branch, params):
             print("Unable to set file permissions.")
             return False
 
-    # Run post-install file if exists
-    post_install_sh = '{}/post_install.sh'.format(install_dir)
-
-    if file_exists(post_install_sh):
-        print("Running post install actions...")
+    # Run post-install actions
+    print("Running post install actions...")
+    for action in post_install:
         try:
-            script_output = subprocess.check_output(
-                "sh {}".format(post_install_sh), shell = True)
-            print("Post install script run.")
+            action_output = subprocess.check_output(action, shell=True)
         except:
-            print("Issue with post-install script.")
-            return False
+            print("Issue with post-install action.")
 
     print("Install complete.")
     return True
@@ -195,10 +190,10 @@ def pkg_install(branch, params):
 
 def pkg_rollback(params):
 
-    backup_dir=params['backup_dir']
-    base_dir=params['base_dir']
-    install_dir=params['install_dir']
-    pkg_name=params['pkg_name']
+    backup_dir = params['backup_dir']
+    base_dir = params['base_dir']
+    install_dir = params['install_dir']
+    pkg_name = params['pkg_name']
 
     print("Rolling back {} installation...".format(pkg_name))
     print("Checking if backup exists.")
