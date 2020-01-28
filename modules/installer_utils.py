@@ -43,6 +43,17 @@ def delete_file(filename):
         return False
 
 
+def read_file(file_name):
+
+    try:
+        with open(file_name, 'r') as fh:
+            contents = fh.read()
+        return contents
+    except Exception as ex:
+        print("Issue reading file: {}".format(ex))
+        return False
+
+
 def pull_github_files(url, branch):
     print("Pulling files from GitHub...")
     try:
@@ -127,11 +138,14 @@ def pkg_install(branch, params, post_install):
     github_url = params['github_url']
     install_dir = params['install_dir']
 
+    version_file = "{}/version.txt"
+
     # check we can get to GitHub
     if not check_internet():
         return False
 
     print("Installing {}...".format(pkg_name))
+    print("Current ver: {}", read_file(version_file))
 
     # check we have pre-requisite Linux modules (apt-get etc.)
     if not check_pkgs_installed(linux_pkg_list):
@@ -164,18 +178,6 @@ def pkg_install(branch, params, post_install):
     if not pull_github_files(github_url, branch):
         return False
 
-    # Set file permissions
-    permissions_file = '{}/set_file_permissions.sh'.format(install_dir)
-    if file_exists(permissions_file):
-        print("Setting permissions on new files")
-        try:
-            script_output = subprocess.check_output(
-                "sh {}".format(permissions_file), shell=True)
-            print("File permissions set.")
-        except:
-            print("Unable to set file permissions.")
-            return False
-
     # Run post-install actions
     print("Running post install actions...")
     for action in post_install:
@@ -184,6 +186,12 @@ def pkg_install(branch, params, post_install):
         except:
             print("Issue with post-install action.")
 
+    # Read release notes if vailable and print to screen
+    rel_notes_file = '{}/release_notes.txt'.format(install_dir)
+    if file_exists(rel_notes_file):
+        print(read_file(rel_notes_file))
+
+    print("Ver: {}", read_file(version_file))
     print("Install complete.")
     return True
 
