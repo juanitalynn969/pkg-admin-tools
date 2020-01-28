@@ -1,0 +1,6 @@
+Supported packages:
+
+ - profiler
+ - wconsole
+ - wiperf
+ - hotspot
