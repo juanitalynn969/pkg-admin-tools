@@ -19,7 +19,7 @@ wiperf_params = {
 
 # Preserve some config files and set some exec bits in case of github issues
 wiperf_post_install = {
-    'cp /home/wlanpi/wiperf/conf/etc/wpa_supplicant/wpa_supplicant.conf cp /home/wlanpi/wiperf/conf/etc/wpa_supplicant/wpa_supplicant.conf.backup',
+    'cp /home/wlanpi/wiperf/conf/etc/wpa_supplicant/wpa_supplicant.conf /home/wlanpi/wiperf/conf/etc/wpa_supplicant/wpa_supplicant.conf.backup',
     'cp /tmp/wiperf/conf/etc/wpa_supplicant/wpa_supplicant.conf /home/wlanpi/wiperf/conf/etc/wpa_supplicant/wpa_supplicant.conf',
     'cp /tmp/wiperf/config.ini /home/wlanpi/wiperf/config.ini',
     'chown -R wlanpi:wlanpi /home/wlanpi/wiperf',
