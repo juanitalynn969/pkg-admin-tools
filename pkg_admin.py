@@ -124,14 +124,14 @@ if (args.roll_back == "wiperf"):
 # bakebit
 if (args.install == "bakebit"):
 
-    if wiperf_install(branch):
+    if bakebit_install(branch):
         print("bakebit installed.")
     else:
         print("bakebit install failed.")
 
 if (args.roll_back == "bakebit"):
 
-    if wiperf_rollback():
+    if bakebit_rollback():
         print("bakebit rolled back.")
     else:
         print("bakebit rollback failed.")
