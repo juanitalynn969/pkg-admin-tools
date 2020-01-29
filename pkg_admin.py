@@ -23,7 +23,8 @@ if not os.geteuid() == 0:
 
 
 # create parser args
-parser = argparse.ArgumentParser()
+parse_descr = "Package install utility for the WLAN Pi. \n"
+parser = argparse.ArgumentParser(description=parse_descr)
 
 # check we have passed args of some type
 if len(sys.argv) < 2:
