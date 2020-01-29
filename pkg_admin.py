@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+# pylint: disable=line-too-long
 
 from modules.wconsole import *
 from modules.profiler import *

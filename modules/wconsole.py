@@ -2,7 +2,7 @@ from modules.installer_utils import *
 #############################################
 # Install wconsole:
 #
-# 1. Move existing hotspot files to /tmp
+# 1. Move existing hotspot files to /home/wlanpi/.recycle
 # 2. Pull in new files from github
 # 3. Set directory & file permissions
 #############################################
@@ -11,8 +11,8 @@ wconsole_params = {
     'base_dir': '/etc',
     'module_dir': 'wconsole',
     'install_dir': '/etc/wconsole',
-    'tmp_dir': '/tmp',
-    'backup_dir': "/tmp/wconsole",
+    'tmp_dir': '/home/wlanpi/.recycle',
+    'backup_dir': "/home/wlanpi/.recycle/wconsole",
     'github_url': "https://github.com/WLAN-Pi/wconsole.git",
     'pkg_name': 'wconsole',
     'linux_pkg_list': ['hostapd', 'ufw', 'isc-dhcp-server']
@@ -21,9 +21,9 @@ wconsole_params = {
 # take copies of files that may have been modified & use previous ver
 wconsole_post_install = {
     'cp /etc/wconsole/conf/hostapd.conf /etc/wconsole/conf/hostapd.conf.backup',
-    'cp /tmp/wconsole/conf/hostapd.conf /etc/wconsole/conf/hostapd.conf',
+    'cp /home/wlanpi/.recycle/wconsole/conf/hostapd.conf /etc/wconsole/conf/hostapd.conf',
     'cp /etc/wconsole/conf/ser2net.conf /etc/wconsole/conf/ser2net.conf.backup',
-    'cp /tmp/wconsole/conf/ser2net.conf /etc/wconsole/conf/ser2net.conf',
+    'cp /home/wlanpi/.recycle/wconsole/conf/ser2net.conf /etc/wconsole/conf/ser2net.conf',
     'chmod a+x /etc/wconsole/wconsole_switcher',
 }
 
@@ -35,9 +35,9 @@ def wconsole_install(branch):
 ##################################################################
 # Rollback wconsole installation:
 #
-# 1. Check if /tmp/wconsole dir exists
+# 1. Check if /home/wlanpi/.recycle/wconsole dir exists
 # 2. clear wconsole dir (/etc/wconsole)
-# 3. Copy files in /tmp/console back to /etc/wconsole
+# 3. Copy files in /home/wlanpi/.recycle/console back to /etc/wconsole
 ##################################################################
 
 
