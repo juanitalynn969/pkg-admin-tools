@@ -163,9 +163,9 @@ def pkg_install(branch, params, post_install):
             return False
 
     # change in to home dir
-    print("Changing to home directory: .".format(base_dir))
+    print("Changing to home directory: {}".format(base_dir))
     if not change_directory(base_dir):
-        print("Unable to change to home directory: .".format(base_dir))
+        print("Unable to change to home directory: {}".format(base_dir))
         return False
 
     # move existing module dir to tmp dir
