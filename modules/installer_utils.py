@@ -214,7 +214,10 @@ def pkg_rollback(params):
     print("Rolling back {} installation...".format(pkg_name))
     print("Checking if backup exists.")
     if file_exists(backup_dir):
-        print("Backup file exists, rolling back.")
+        print("Backup location exists, rolling back.")
+    else:
+        print("No backup location exists, exiting.")
+        return False
 
     print("Clearing install directory: {}".format(install_dir))
 
