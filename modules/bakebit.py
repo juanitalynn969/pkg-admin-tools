@@ -32,7 +32,7 @@ def bakebit_install(branch):
 #
 # 1. Check if /home/wlanpi/.recycle/bakebit dir exists
 # 2. clear bakebit dir (/home/wlanpi/bakebit)
-# 3. Copy files in /home/wlanpi/.recycle/bakebit back to /home/wlanpi/bakebit
+# 3. Copy files in /home/wlanpi/.recycle/Bakebit back to /home/wlanpi/Bakebit
 ##################################################################
 
 
