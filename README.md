@@ -62,6 +62,7 @@ When the utility is next run, the new version will be run.
 
 ```
 usage: pkg_admin.py [-h] [-i module] [-r module] [-d] [-b branch_name] [-u]
+                    [-v]
 
 Package install utility for the WLAN Pi.
 
@@ -72,5 +73,6 @@ optional arguments:
   -d              install dev branch (used with -i option)
   -b branch_name  install branch specific branch/release (used with -i option)
   -u              update this utility with latest version
+  -v              show program's version number and exit
 ```
 
