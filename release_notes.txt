@@ -4,3 +4,6 @@ Supported packages:
  - wconsole
  - wiperf
  - hotspot
+ - bakebit
+
+ (Bakebit supported added v0.05)
