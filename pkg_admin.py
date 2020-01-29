@@ -34,8 +34,8 @@ if len(sys.argv) < 2:
 # setup parse args
 parser.add_argument("-i", dest='install', type=str, metavar=('module'), choices=['bakebit', 'hotspot', 'profiler', 'wconsole', 'wiperf'], help="install module")
 parser.add_argument("-r", dest='roll_back', type=str, metavar=('module'), choices=['bakebit', 'hotspot', 'profiler', 'wconsole', 'wiperf'], help="rollback module")
-parser.add_argument("-d", dest='dev', action='store_true', help="pull dev branch")
-parser.add_argument("-b", dest='branch', type=str, metavar=('branch_name'), help="pull branch specific branch/release")
+parser.add_argument("-d", dest='dev', action='store_true', help="install dev branch")
+parser.add_argument("-b", dest='branch', type=str, metavar=('branch_name'), help="install branch specific branch/release")
 parser.add_argument("-u", dest='update', action='store_true', help="update this utility with latest version")
 
 args = parser.parse_args()
