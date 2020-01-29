@@ -8,17 +8,17 @@ from modules.installer_utils import *
 #############################################
 bakebit_params = {
     'base_dir': '/home/wlanpi/NanoHatOLED',
-    'module_dir': 'Bakebit',
-    'install_dir': '/home/wlanpi/NanoHatOLED/Bakebit',
+    'module_dir': 'BakeBit',
+    'install_dir': '/home/wlanpi/NanoHatOLED/BakeBit',
     'tmp_dir': '/home/wlanpi/.recycle',
-    'backup_dir': "/home/wlanpi/.recycle/Bakebit",
+    'backup_dir': "/home/wlanpi/.recycle/BakeBit",
     'github_url': "https://github.com/WLAN-Pi/BakeBit.git",
     'pkg_name': 'bakebit',
     'linux_pkg_list': []
 }
 
 bakebit_post_install = {
-    'chown -R wlanpi:wlanpi /home/wlanpi/NanoHatOLED/Bakebit',
+    'chown -R wlanpi:wlanpi /home/wlanpi/NanoHatOLED/BakeBit',
     'chmod a+x /home/wlanpi/NanoHatOLED/BakeBit/Software/Python/bakebit_nanohat_oled.py',
 }
 
