@@ -7,6 +7,7 @@ from modules.wlanpihotspot import *
 from modules.installer_utils import *
 from modules.wiperf import *
 from modules.updater import *
+from modules.bakebit import *
 
 import argparse
 import requests
@@ -119,6 +120,21 @@ if (args.roll_back == "wiperf"):
         print("wiperf rolled back.")
     else:
         print("wiperf rollback failed.")
+
+# bakebit
+if (args.install == "bakebit"):
+
+    if wiperf_install(branch):
+        print("bakebit installed.")
+    else:
+        print("bakebit install failed.")
+
+if (args.roll_back == "bakebit"):
+
+    if wiperf_rollback():
+        print("bakebit rolled back.")
+    else:
+        print("bakebit rollback failed.")
 
 # end
 print("-" * 50)
