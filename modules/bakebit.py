@@ -8,10 +8,10 @@ from modules.installer_utils import *
 #############################################
 bakebit_params = {
     'base_dir': '/home/wlanpi/NanoHatOLED',
-    'module_dir': 'bakebit',
+    'module_dir': 'Bakebit',
     'install_dir': '/home/wlanpi/NanoHatOLED/Bakebit',
     'tmp_dir': '/home/wlanpi/.recycle',
-    'backup_dir': "/home/wlanpi/.recycle/bakebit",
+    'backup_dir': "/home/wlanpi/.recycle/Bakebit",
     'github_url': "https://github.com/WLAN-Pi/BakeBit.git",
     'pkg_name': 'bakebit',
     'linux_pkg_list': []
