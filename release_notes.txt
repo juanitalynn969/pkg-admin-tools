@@ -5,5 +5,3 @@ Supported packages:
  - wiperf
  - hotspot
  - bakebit
-
- (Bakebit supported added v0.05)
