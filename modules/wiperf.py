@@ -22,9 +22,10 @@ wiperf_post_install = {
     'cp /home/wlanpi/wiperf/conf/etc/wpa_supplicant/wpa_supplicant.conf /home/wlanpi/wiperf/conf/etc/wpa_supplicant/wpa_supplicant.conf.backup',
     'cp /home/wlanpi/.recycle/wiperf/conf/etc/wpa_supplicant/wpa_supplicant.conf /home/wlanpi/wiperf/conf/etc/wpa_supplicant/wpa_supplicant.conf',
     'cp /home/wlanpi/.recycle/wiperf/config.ini /home/wlanpi/wiperf/config.ini',
-    'chown -R wlanpi:wlanpi /home/wlanpi/wiperf',
     'chmod a+x /home/wlanpi/wiperf/wi-perf.py',
     'chmod a+x /home/wlanpi/wiperf/wiperf_switcher',
+    'chown -R wlanpi:wlanpi /home/wlanpi/wiperf',
+    'chown wlanpi:wlanpi /home/wlanpi/wiperf/config.ini',
 }
 
 
