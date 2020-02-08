@@ -18,6 +18,7 @@ updater_params = {
 }
 
 updater_post_install = {
+    '[ -f /usr/local/sbin/pkg_admin ] || ln -s /home/wlanpi/pkg-admin-tools/pkg_admin.py /usr/local/sbin/pkg_admin'
 
 }
 
