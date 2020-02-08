@@ -20,7 +20,8 @@ wconsole_params = {
 
 # take copies of files that may have been modified & use previous ver
 wconsole_post_install = {
-    'cp /home/wlanpi/.recycle/wconsole/conf/hostapd.conf /etc/wconsole/conf/hostapd.conf.old',
+    'cp /etc/wconsole/conf/hostapd.conf /etc/wconsole/conf/hostapd.conf.backup',
+    'cp /home/wlanpi/.recycle/wconsole/conf/hostapd.conf /etc/wconsole/conf/hostapd.conf',
     'cp /home/wlanpi/.recycle/wconsole/conf/ser2net.conf /etc/wconsole/conf/ser2net.conf.old',
     'chmod a+x /etc/wconsole/wconsole_switcher',
 }
