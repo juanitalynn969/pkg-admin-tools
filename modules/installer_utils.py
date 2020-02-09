@@ -53,6 +53,15 @@ def read_file(file_name):
         print("Issue reading file: {}".format(ex))
         return False
 
+def read_version_file(file_name):
+
+    try:
+        with open(file_name, 'r') as fh:
+            contents = fh.read()
+        return contents
+    except Exception as ex:
+        print("Unable to read current version file (not installed?)")
+        return False
 
 def pull_github_files(url, branch):
     print("Pulling files from GitHub...")
@@ -145,7 +154,7 @@ def pkg_install(branch, params, post_install):
         return False
 
     print("Installing {}...".format(pkg_name))
-    print("Current ver: {}".format(read_file(version_file)))
+    print("Current ver: {}".format(read_version_file(version_file)))
 
     # check we have pre-requisite Linux modules (apt-get etc.)
     if not check_pkgs_installed(linux_pkg_list):
@@ -154,43 +163,52 @@ def pkg_install(branch, params, post_install):
     # check we have pre-requisite python modules
     # TBA
 
-    # remove old backup file if exists
-    print("Checking if old backup exists.")
     if file_exists(backup_dir):
-        print("Old backup dir exists.")
 
-        if not clear_dir(backup_dir):
+        # remove old backup file if exists
+        print("Checking if old backup exists.")
+        if file_exists(backup_dir):
+            print("Old backup dir exists.")
+
+            if not clear_dir(backup_dir):
+                return False
+
+        # change in to home dir
+        print("Changing to home directory: {}".format(base_dir))
+        if not change_directory(base_dir):
+            print("Unable to change to home directory: {}".format(base_dir))
             return False
 
-    # change in to home dir
-    print("Changing to home directory: {}".format(base_dir))
-    if not change_directory(base_dir):
-        print("Unable to change to home directory: {}".format(base_dir))
-        return False
+        # move existing module dir to tmp dir
+        if file_exists(module_dir):
+            print("Backing up existing module files from: {}".format(module_dir))
 
-    # move existing module dir to tmp dir
-    if file_exists(module_dir):
-        print("Backing up existing module files from: {}".format(module_dir))
-
-        if not move_directory(module_dir, tmp_dir):
-            print("Unable to backup existing module files from: {} to: {}".format(
-                module_dir, tmp_dir))
+            if not move_directory(module_dir, tmp_dir):
+                print("Unable to backup existing module files from: {} to: {}".format(
+                    module_dir, tmp_dir))
+                return False
+        else:
+            print("Error: Can't find module dir: {}".format(module_dir))
             return False
+
+        # clone files from GitHub
+        if not pull_github_files(github_url, branch):
+            return False
+
+        # Run post-install actions
+        print("Running post install actions...")
+        for action in post_install:
+            try:
+                action_output = subprocess.check_output(action, shell=True)
+            except:
+                print("Issue with post-install action.")
+
+    # if the package does not already exist, clone the specified branch
     else:
-        print("Error: Can't find module dir: {}".format(module_dir))
-        return False
 
-    # clone files from GitHub
-    if not pull_github_files(github_url, branch):
-        return False
-
-    # Run post-install actions
-    print("Running post install actions...")
-    for action in post_install:
-        try:
-            action_output = subprocess.check_output(action, shell=True)
-        except:
-            print("Issue with post-install action.")
+        # clone files from GitHub
+        if not pull_github_files(github_url, branch):
+            return False
 
     # Read release notes if vailable and print to screen
     rel_notes_file = '{}/release_notes.txt'.format(install_dir)
@@ -199,7 +217,7 @@ def pkg_install(branch, params, post_install):
         print(read_file(rel_notes_file))
         print("###################################")
 
-    print("Ver: {}".format(read_file(version_file)))
+    print("Ver: {}".format(read_version_file(version_file)))
     print("Install complete.")
     return True
 
