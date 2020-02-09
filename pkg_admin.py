@@ -39,6 +39,7 @@ parser.add_argument("-r", dest='roll_back', type=str, metavar=('module'), choice
 parser.add_argument("-d", dest='dev', action='store_true', help="install dev branch (used with -i option)")
 parser.add_argument("-b", dest='branch', type=str, metavar=('branch_name'), help="install branch specific branch/release (used with -i option)")
 parser.add_argument("-u", dest='update', action='store_true', help="update this utility with latest version")
+parser.add_argument("-e", dest='empty_bin', action='store_true', help="empty recycle bin folder")
 parser.add_argument("-v", action='version', version=this_version)
 
 args = parser.parse_args()
@@ -52,6 +53,11 @@ if args.dev:
     branch = "dev"
 if args.branch:
     branch = args.branch
+
+# empty recycle bin
+if (args.empty_bin):
+    if not empty_recycle_bin():
+        exit()
 
 # update util
 if (args.update):

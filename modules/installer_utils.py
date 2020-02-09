@@ -32,7 +32,6 @@ def file_exists(filename):
         print("Error: {}".format(ex))
         return False
 
-
 def delete_file(filename):
 
     try:
@@ -41,7 +40,6 @@ def delete_file(filename):
     except Exception as ex:
         print("Error: {}".format(ex))
         return False
-
 
 def read_file(file_name):
 
@@ -98,7 +96,6 @@ def move_directory(src, dst):
         print("Error: {}".format(ex))
         return False
 
-
 def clear_dir(dir):
     try:
         pull_output = subprocess.check_output(
@@ -110,6 +107,16 @@ def clear_dir(dir):
         print("Error: {}".format(ex))
         return False
 
+def empty_recycle_bin(dir='/home/wlanpi/.recycle'):
+    try:
+        pull_output = subprocess.check_output(
+            "rm -r {}".format(dir), shell=True)
+        print("Recycle folder cleared.")
+        return True
+    except Exception as ex:
+        print("Unable to clear recycle folder.")
+        print("Error: {}".format(ex))
+        return False
 
 def check_pkg_installed(pkg_name):
     print("Checking {} package present on system...".format(pkg_name))
