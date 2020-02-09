@@ -206,6 +206,12 @@ def pkg_install(branch, params, post_install):
     # if the package does not already exist, clone the specified branch
     else:
 
+        # change in to home dir
+        print("Changing to base directory: {}".format(base_dir))
+        if not change_directory(base_dir):
+            print("Unable to change to base directory: {}".format(base_dir))
+            return False
+
         # clone files from GitHub
         if not pull_github_files(github_url, branch):
             return False
