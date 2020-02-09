@@ -222,7 +222,7 @@ def pkg_install(branch, params, post_install):
             try:
                 action_output = subprocess.check_output(action, shell=True)
             except:
-                print("Issue with post-install action.")
+                print("Possible issue with post-install action.")
 
     # Read release notes if vailable and print to screen
     rel_notes_file = '{}/release_notes.txt'.format(install_dir)
