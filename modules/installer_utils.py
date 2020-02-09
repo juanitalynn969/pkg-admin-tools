@@ -163,7 +163,7 @@ def pkg_install(branch, params, post_install):
     # check we have pre-requisite python modules
     # TBA
 
-    if file_exists(base_dir):
+    if file_exists(install_dir):
 
         # remove old backup file if exists
         print("Checking if old backup exists.")
