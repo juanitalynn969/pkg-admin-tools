@@ -26,3 +26,7 @@ updater_post_install = {
 def updater_install(branch):
 
     return pkg_install(branch, updater_params, updater_post_install)
+
+def updater_rollback():
+
+    return pkg_rollback(updater_params)

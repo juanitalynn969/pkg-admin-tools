@@ -5,3 +5,4 @@ Supported packages:
  - wiperf
  - hotspot
  - bakebit
+ - pkg_admin

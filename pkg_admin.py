@@ -34,8 +34,8 @@ if len(sys.argv) < 2:
     sys.exit(1)
 
 # setup parse args
-parser.add_argument("-i", dest='install', type=str, metavar=('module'), choices=['bakebit', 'hotspot', 'profiler', 'wconsole', 'wiperf'], help="install module")
-parser.add_argument("-r", dest='roll_back', type=str, metavar=('module'), choices=['bakebit', 'hotspot', 'profiler', 'wconsole', 'wiperf'], help="rollback module")
+parser.add_argument("-i", dest='install', type=str, metavar=('module'), choices=['bakebit', 'hotspot', 'profiler', 'wconsole', 'wiperf', 'pkg_admin'], help="install module")
+parser.add_argument("-r", dest='roll_back', type=str, metavar=('module'), choices=['bakebit', 'hotspot', 'profiler', 'wconsole', 'wiperf', 'pkg_admin'], help="rollback module")
 parser.add_argument("-d", dest='dev', action='store_true', help="install dev branch (used with -i option)")
 parser.add_argument("-b", dest='branch', type=str, metavar=('branch_name'), help="install branch specific branch/release (used with -i option)")
 parser.add_argument("-u", dest='update', action='store_true', help="update this utility with latest version")
@@ -141,6 +141,21 @@ if (args.roll_back == "bakebit"):
         print("bakebit rolled back.")
     else:
         print("bakebit rollback failed.")
+
+# pkg_admin
+if (args.install == "pkg_admin"):
+
+    if updater_install(branch):
+        print("pkg_admin installed.")
+    else:
+        print("pkg_admin install failed.")
+
+if (args.roll_back == "pkg_admin"):
+
+    if updater_rollback():
+        print("pkg_admin rolled back.")
+    else:
+        print("pkg_admin rollback failed.")
 
 # end
 print("-" * 50)
