@@ -201,7 +201,7 @@ def pkg_install(branch, params, post_install):
             try:
                 action_output = subprocess.check_output(action, shell=True)
             except:
-                print("Issue with post-install action.")
+                print("Possible issue with post-install action.")
 
     # if the package does not already exist, clone the specified branch
     else:
