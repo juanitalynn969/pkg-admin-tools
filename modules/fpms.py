@@ -19,7 +19,9 @@ fpms_params = {
 }
 
 # perform any required post-install actions here
-fpms_post_install = {}
+fpms_post_install = {
+    'sync'
+}
 
 
 def fpms_install(branch):
