@@ -5,4 +5,7 @@ Supported packages:
  - wiperf
  - hotspot
  - bakebit
+ - fpms
  - pkg_admin
+
+ (fpms added in this version v0.13)
