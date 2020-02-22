@@ -6,6 +6,7 @@ from modules.profiler import *
 from modules.wlanpihotspot import *
 from modules.installer_utils import *
 from modules.wiperf import *
+from modules.fpms import *
 from modules.updater import *
 from modules.bakebit import *
 
