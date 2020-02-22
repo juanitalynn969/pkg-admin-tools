@@ -26,6 +26,7 @@ wiperf_post_install = {
     'chmod a+x /home/wlanpi/wiperf/wiperf_switcher',
     'chown -R wlanpi:wlanpi /home/wlanpi/wiperf',
     'chown wlanpi:wlanpi /home/wlanpi/wiperf/config.ini',
+    'sync',
 }
 
 

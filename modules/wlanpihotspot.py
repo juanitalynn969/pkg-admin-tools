@@ -26,6 +26,7 @@ hotspot_post_install = {
     'chmod 644 /etc/wlanpihotspot/default/ufw',
     'chmod 644 /etc/wlanpihotspot/sysctl/sysctl.conf',
     'chmod 640 /etc/wlanpihotspot/ufw/before.rules',
+    'sync',
 }
 
 

@@ -24,6 +24,7 @@ wconsole_post_install = {
     'cp /home/wlanpi/.recycle/wconsole/conf/hostapd.conf /etc/wconsole/conf/hostapd.conf',
     'cp /home/wlanpi/.recycle/wconsole/conf/ser2net.conf /etc/wconsole/conf/ser2net.conf.old',
     'chmod a+x /etc/wconsole/wconsole_switcher',
+    'sync',
 }
 
 

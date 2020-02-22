@@ -20,6 +20,7 @@ bakebit_params = {
 bakebit_post_install = {
     'chown -R wlanpi:wlanpi /home/wlanpi/NanoHatOLED/BakeBit',
     'chmod a+x /home/wlanpi/NanoHatOLED/BakeBit/Software/Python/bakebit_nanohat_oled.py',
+    'sync',
 }
 
 

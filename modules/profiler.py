@@ -20,6 +20,7 @@ profiler_params = {
 profiler_post_install = {
     'chown -R wlanpi:wlanpi /home/wlanpi/profiler',
     'chmod a+x /home/wlanpi/profiler/profiler.py',
+    'sync',
 }
 
 
