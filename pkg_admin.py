@@ -9,6 +9,7 @@ from modules.wiperf import *
 from modules.fpms import *
 from modules.updater import *
 from modules.bakebit import *
+from modules.misc_build_files import *
 
 import argparse
 import requests
@@ -35,8 +36,8 @@ if len(sys.argv) < 2:
     sys.exit(1)
 
 # setup parse args
-parser.add_argument("-i", dest='install', type=str, metavar=('module'), choices=['bakebit', 'hotspot', 'profiler', 'wconsole', 'wiperf', 'fpms', 'pkg_admin'], help="install module")
-parser.add_argument("-r", dest='roll_back', type=str, metavar=('module'), choices=['bakebit', 'hotspot', 'profiler', 'wconsole', 'wiperf', 'fpms', 'pkg_admin'], help="rollback module")
+parser.add_argument("-i", dest='install', type=str, metavar=('module'), choices=['bakebit', 'hotspot', 'profiler', 'wconsole', 'wiperf', 'fpms', 'pkg_admin', 'misc'], help="install module")
+parser.add_argument("-r", dest='roll_back', type=str, metavar=('module'), choices=['bakebit', 'hotspot', 'profiler', 'wconsole', 'wiperf', 'fpms', 'pkg_admin', 'misc'], help="rollback module")
 parser.add_argument("-d", dest='dev', action='store_true', help="install dev branch (used with -i option)")
 parser.add_argument("-b", dest='branch', type=str, metavar=('branch_name'), help="install branch specific branch/release (used with -i option)")
 parser.add_argument("-u", dest='update', action='store_true', help="update this utility with latest version")
@@ -157,6 +158,21 @@ if (args.roll_back == "fpms"):
         print("fpms rolled back.")
     else:
         print("fpms rollback failed.")
+
+# misc_build_files
+if (args.install == "misc"):
+
+    if misc_build_files_install(branch):
+        print("misc_build_files installed.")
+    else:
+        print("misc_build_files install failed.")
+
+if (args.roll_back == "misc_build_files"):
+
+    if misc_build_files_rollback():
+        print("misc_build_files rolled back. (manual restoration of files to etc is required)")
+    else:
+        print("misc_build_files rollback failed.")
 
 # pkg_admin
 if (args.install == "pkg_admin"):
