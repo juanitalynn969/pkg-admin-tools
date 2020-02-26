@@ -204,6 +204,15 @@ def pkg_install(branch, params, post_install):
         # clone files from GitHub
         if not pull_github_files(github_url, branch):
             return False
+        
+        # Read release notes if vailable and print to screen
+        rel_notes_file = '{}/release_notes.txt'.format(install_dir)
+        if file_exists(rel_notes_file):
+            rel_notes = read_file(rel_notes_file)
+        else:
+            rel_notes = ''
+
+        ver_info = "Ver: {}".format(read_version_file(version_file))
 
         # Run post-install actions
         print("Running post install actions...")
