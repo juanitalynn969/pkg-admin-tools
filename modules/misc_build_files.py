@@ -8,9 +8,9 @@ from modules.installer_utils import *
 #############################################
 misc_build_files_params = {
 
-    'base_dir': '/etc',
+    'base_dir': '/home/wlanpi',
     'module_dir': 'misc-build-files',
-    'install_dir': '/etc/misc-build-files',
+    'install_dir': '/home/wlanpi/misc-build-files',
     'tmp_dir': '/home/wlanpi/.recycle',
     'backup_dir': "/home/wlanpi/.recycle/misc-build-files",
     'github_url': "https://github.com/WLAN-Pi/misc-build-files.git",
@@ -21,12 +21,10 @@ misc_build_files_params = {
 # set ownership of files, move in to final position and removed repo dir
 misc_build_files_post_install = {
     'sync; sleep 1',
-    'chown -R root:root /etc/misc-build-files',
+    'chown -R root:root /home/wlanpi/misc-build-files',
     'sync; sleep 1',
-    'cp -R /etc/misc-build-files/etc/* /etc',
+    'cp -R /home/wlanpi/misc-build-files/etc/* /etc',
     'sync; sleep 1',
-    'rm -rf /etc/misc-build-files',
-    'sync',
 }
 
 def misc_build_files_install(branch):
