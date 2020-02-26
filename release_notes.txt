@@ -7,5 +7,7 @@ Supported packages:
  - bakebit
  - fpms
  - pkg_admin
+ - misc
 
- (fpms added in this version v0.13)
+ 1. fpms added in version v0.13
+ 2. misc build files added in v0.14
