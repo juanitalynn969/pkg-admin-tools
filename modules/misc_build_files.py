@@ -21,7 +21,9 @@ misc_build_files_params = {
 # set ownership of files, move in to final position and removed repo dir
 misc_build_files_post_install = {
     'chown -R root:root /etc/misc-build-files',
+    'sync',
     'cp -R /etc/misc-build-files/etc/* /etc',
+    'sync',
     'rm -rf /etc/misc-build-files',
     'sync',
 }
