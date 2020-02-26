@@ -156,6 +156,9 @@ def pkg_install(branch, params, post_install):
 
     version_file = "{}/version.txt".format(install_dir)
 
+    rel_notes = ''
+    ver_info = ''
+
     # check we can get to GitHub
     if not check_internet():
         return False
