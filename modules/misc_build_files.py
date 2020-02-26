@@ -22,7 +22,6 @@ misc_build_files_params = {
 misc_build_files_post_install = {
     'chown -R root:root /etc/misc-build-files',
     'cp -R /etc/misc-build-files/etc/* /etc',
-    'rm -rf /etc/misc-build-files/',
     'sync',
 }
 
