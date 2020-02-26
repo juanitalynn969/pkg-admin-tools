@@ -173,8 +173,8 @@ def pkg_install(branch, params, post_install):
     # check we have pre-requisite python modules
     # TBA
 
+    # if existing install detected, get rid of old backup
     if file_exists(install_dir):
-
         # remove old backup file if exists
         print("Checking if old backup exists.")
         if file_exists(backup_dir):
@@ -183,12 +183,14 @@ def pkg_install(branch, params, post_install):
             if not clear_dir(backup_dir):
                 return False
 
-        # change in to home dir
-        print("Changing to home directory: {}".format(base_dir))
-        if not change_directory(base_dir):
-            print("Unable to change to home directory: {}".format(base_dir))
-            return False
+    # change in to home dir
+    print("Changing to home directory: {}".format(base_dir))
+    if not change_directory(base_dir):
+        print("Unable to change to home directory: {}".format(base_dir))
+        return False
 
+    # if existing install detected, move existing to recycle dir
+    if file_exists(install_dir):
         # move existing module dir to tmp dir
         if file_exists(module_dir):
             print("Backing up existing module files from: {}".format(module_dir))
@@ -201,56 +203,26 @@ def pkg_install(branch, params, post_install):
             print("Error: Can't find module dir: {}".format(module_dir))
             return False
 
-        # clone files from GitHub
-        if not pull_github_files(github_url, branch):
-            return False
+    # clone files from GitHub
+    if not pull_github_files(github_url, branch):
+        return False
         
-        # Read release notes if vailable and print to screen
-        rel_notes_file = '{}/release_notes.txt'.format(install_dir)
-        if file_exists(rel_notes_file):
-            rel_notes = read_file(rel_notes_file)
-        else:
-            rel_notes = ''
-
-        ver_info = "Ver: {}".format(read_version_file(version_file))
-
-        # Run post-install actions
-        print("Running post install actions...")
-        for action in post_install:
-            try:
-                action_output = subprocess.check_output(action, shell=True)
-            except:
-                print("Possible issue with post-install action.")
-
-    # if the package does not already exist, clone the specified branch
+    # Read release notes if vailable and print to screen
+    rel_notes_file = '{}/release_notes.txt'.format(install_dir)
+    if file_exists(rel_notes_file):
+       rel_notes = read_file(rel_notes_file)
     else:
+        rel_notes = ''
 
-        # change in to home dir
-        print("Changing to base directory: {}".format(base_dir))
-        if not change_directory(base_dir):
-            print("Unable to change to base directory: {}".format(base_dir))
-            return False
+    ver_info = "Ver: {}".format(read_version_file(version_file))
 
-        # clone files from GitHub
-        if not pull_github_files(github_url, branch):
-            return False
-        
-        # Read release notes if vailable and print to screen
-        rel_notes_file = '{}/release_notes.txt'.format(install_dir)
-        if file_exists(rel_notes_file):
-            rel_notes = read_file(rel_notes_file)
-        else:
-            rel_notes = ''
-
-        ver_info = "Ver: {}".format(read_version_file(version_file))
-        
-        # Run post-install actions
-        print("Running post install actions...")
-        for action in post_install:
-            try:
-                action_output = subprocess.check_output(action, shell=True)
-            except:
-                print("Possible issue with post-install action.")
+    # Run post-install actions
+    print("Running post install actions...")
+    for action in post_install:
+        try:
+            action_output = subprocess.check_output(action, shell=True)
+        except:
+            print("Possible issue with post-install action.")
 
     # Print release info
     print(rel_notes)
