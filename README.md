@@ -59,8 +59,8 @@ When the utility is next run, the new version will be run.
 ## Usage
 
 ```
-usage: pkg_admin [-h] [-i module] [-r module] [-d] [-b branch_name] [-u]
-                    [-v]
+usage: pkg_admin [-h] [-i module] [-r module] [-d] [-b branch_name] [-u] [-e]
+                 [-v]
 
 Package install utility for the WLAN Pi.
 
@@ -71,6 +71,36 @@ optional arguments:
   -d              install dev branch (used with -i option)
   -b branch_name  install branch specific branch/release (used with -i option)
   -u              update this utility with latest version
+  -e              empty recycle bin folder
   -v              show program's version number and exit
 ```
+Available package options:
+
+* bakebit
+* hotspot
+* profiler
+* wconsole
+* wiperf
+* fpms
+* pkg_admin
+* misc
+
+Example 1: install version 0.05 of hotspot mode:
+```
+sudo pkg_admin -i hotspot -b v0.05
+```
+
+Example 2: install the latest live repo files of profiler (use with great care, as this may not be a fully tested/released set of files)
+```
+sudo pkg_admin -i profiler
+```
+Example 3: install the latest dev files for the wireless console (bleeding edge...take care!)
+```
+sudo pkg_admin -d wconsole
+```
+Example 4: Update the package admin tool itself (a good idea before downloading any new release):
+```
+sudo pkg_admin -u
+```
+
 
