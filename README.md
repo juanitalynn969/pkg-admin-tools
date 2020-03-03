@@ -16,7 +16,7 @@ cd ~
 sudo git clone https://github.com/WLAN-Pi/pkg-admin-tools.git
 ```
 
-(Note: it is best to run the utility from the WLAN Pi classic mode)
+(Note: the pkg_admin utility should only be run with the WLAN Pi in classic mode)
 
 Once this operation has been completed, the utility can be run as follows (this example shows the help dialog):
 
@@ -24,6 +24,8 @@ Once this operation has been completed, the utility can be run as follows (this 
 sudo pkg_admin -h
 ```
 ## Package Install
+
+**Note: the pkg_admin utility should only be run with the WLAN Pi in classic mode**
 
 The ```sudo pkg_admin -i``` command is used to install a package or update an existing package. When the command is run, the existing package files are moved to a backup directory (~/.recycle) and then the package files are pulled from GitHub and placed in the correct location on the WLAN Pi. Following the pull from GitHub, a few post install actions are performed to restore a number of config files from the original package install. The installer pulls the latest set of files from the GutHub master repo of the package, unless the '-d' option is also added, which will pull the latest dev branch. 
 
