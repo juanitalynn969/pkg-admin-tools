@@ -8,9 +8,9 @@ from modules.installer_utils import *
 #############################################
 fpms_params = {
 
-    'base_dir': '/home/wlanpi',
+    'base_dir': '/usr/local',
     'module_dir': 'fpms',
-    'install_dir': '/home/wlanpi/fpms',
+    'install_dir': '/usr/local/fpms',
     'tmp_dir': '/home/wlanpi/.recycle',
     'backup_dir': "/home/wlanpi/.recycle/fpms",
     'github_url': "https://github.com/WLAN-Pi/fpms.git",
